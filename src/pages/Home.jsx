@@ -1,61 +1,36 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { products } from '../data/products'
 
 const Home = ({ category, addToCart }) => {
   const [searchInput, setSearchInput] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
 
+  // Live filtering using search input directly
   const filtered = products
     .filter(p => p.category === category)
-    .filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()))
-
-  const handleSearch = () => {
-    setSearchTerm(searchInput.trim())
-  }
-
-  // When input is cleared, reset the searchTerm
-  useEffect(() => {
-    if (searchInput.trim() === '') {
-      setSearchTerm('')
-    }
-  }, [searchInput])
+    .filter(p => p.name.toLowerCase().includes(searchInput.toLowerCase()))
 
   const handleAddToCart = (product) => {
     addToCart(product)
-
   }
 
   return (
     <div style={{ padding: '1rem', flex: 1 }}>
       <h2>{category}</h2>
 
-      {/* Search Bar */}
-      <div style={{ display: 'flex', margin: '1rem 0', gap: '0.5rem' }}>
+      {/* Search Bar (no button) */}
+      <div style={{ margin: '1rem 0' }}>
         <input
           type="text"
           placeholder="Search products..."
           value={searchInput}
           onChange={e => setSearchInput(e.target.value)}
           style={{
-            flex: 1,
+            width: '100%',
             padding: '0.5rem',
             borderRadius: '8px',
             border: '1px solid #ccc'
           }}
         />
-        <button
-          onClick={handleSearch}
-          style={{
-            padding: '0.5rem 1rem',
-            borderRadius: '8px',
-            background: '#007bff',
-            color: '#fff',
-            border: 'none',
-            cursor: 'pointer'
-          }}
-        >
-          Search
-        </button>
       </div>
 
       {/* Product Grid */}
