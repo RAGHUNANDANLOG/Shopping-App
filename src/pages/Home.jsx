@@ -15,7 +15,7 @@ const Home = ({ category, addToCart }) => {
 
   const handleAddToCart = (product) => {
     addToCart(product)
-    alert('Added successfully')  // <-- Alert message here
+    // alert removed
   }
 
   return (
