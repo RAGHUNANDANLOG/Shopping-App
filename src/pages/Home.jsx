@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { products } from '../data/products'
 
 const Home = ({ category, addToCart }) => {
@@ -13,9 +13,16 @@ const Home = ({ category, addToCart }) => {
     setSearchTerm(searchInput.trim())
   }
 
+  // When input is cleared, reset the searchTerm
+  useEffect(() => {
+    if (searchInput.trim() === '') {
+      setSearchTerm('')
+    }
+  }, [searchInput])
+
   const handleAddToCart = (product) => {
     addToCart(product)
-    alert('Added successfully')  // <-- Alert message here
+    alert('Added successfully')
   }
 
   return (
