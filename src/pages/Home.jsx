@@ -13,6 +13,11 @@ const Home = ({ category, addToCart }) => {
     setSearchTerm(searchInput.trim())
   }
 
+  const handleAddToCart = (product) => {
+    addToCart(product)
+    alert('Added successfully')  // <-- Alert message here
+  }
+
   return (
     <div style={{ padding: '1rem', flex: 1 }}>
       <h2>{category}</h2>
@@ -67,7 +72,7 @@ const Home = ({ category, addToCart }) => {
             >
               <h3>{p.name}</h3>
               <p>₹{p.price}</p>
-              <button onClick={() => addToCart(p)}>Add to Cart</button>
+              <button onClick={() => handleAddToCart(p)}>Add to Cart</button>
             </div>
           ))
         ) : (
