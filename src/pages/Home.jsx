@@ -22,7 +22,7 @@ const Home = ({ category, addToCart }) => {
 
   const handleAddToCart = (product) => {
     addToCart(product)
-    alert('Added successfully')
+
   }
 
   return (
